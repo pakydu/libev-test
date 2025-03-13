@@ -57,3 +57,12 @@ CONTRIBUTORS
    Christopher Layne
    Chris Brody
 
+# AI-generate：
+本项目使用 CMake 进行构建。请按照以下步骤操作：
+
+1. 创建构建目录并进入：
+   ```bash
+   mkdir build && cd build  
+2.  运行 CMake 配置： bash  cmake ..   
+3.  编译项目： bash  make   
+4.  安装（可选）： bash  sudo make install
