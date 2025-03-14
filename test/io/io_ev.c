@@ -70,6 +70,12 @@ static int setup_tcp_socket(struct ev_loop *loop) {
     return sockfd;
 }
 
+
+static void file_change_cb(EV_P_ ev_stat *w, int revents) {
+    if (w->attr.st_mtime != w->prev.st_mtime)
+        printf("文件 %s 被修改!\n", w->path);
+}
+
 int main() {
     // 初始化libev事件循环
     struct ev_loop *loop = ev_default_loop(0);
@@ -83,6 +89,11 @@ int main() {
     ev_io stdin_watcher = {.fd = -1, .events = 0};
     ev_io_init(&stdin_watcher, stdin_cb, STDIN_FILENO, EV_READ);
     ev_io_start(loop, &stdin_watcher);
+
+	//for file:
+	ev_stat file_watcher;
+	ev_stat_init(&file_watcher, file_change_cb, "../io_ev.c", 0);
+	ev_stat_start(loop, &file_watcher);
 
     // 新增：设置 TCP socket
     int tcp_sockfd = setup_tcp_socket(loop);
