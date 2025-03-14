@@ -19,7 +19,7 @@ add_compile_options( -static )
 
 include_directories(/home/pakydu/works/libev/libev-4.33/)
 link_directories(/home/pakydu/works/libev/libev-4.33/build)
-link_libraries( ev m)
+link_libraries( ev m pthread)
 # 添加可执行文件
 add_executable(test_ev test_ev.c)
 
